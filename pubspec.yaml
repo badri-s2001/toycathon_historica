@@ -1,0 +1,53 @@
+name: historica
+description: A new Flutter project.
+
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.3
+  audioplayers: 0.17.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+
+  uses-material-design: true
+
+
+  assets:
+    - images/
+    - images/ashoka/
+    - images/rama/
+    - images/apj/
+    - images/chanakya/
+    - images/pandava/
+    - images/cv/
+    - images/card/
+    - images/card/home/
+    - images/card/history/
+    - images/card/mythology/
+    - images/card/scientist/
+    - images/logo/
+    - assets/
+
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Black.ttf
+
