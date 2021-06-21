@@ -34,7 +34,7 @@ class _PandavaStoryPageState extends State<PandavaStoryPage> {
             body: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/background.png"),
+                  image: AssetImage("images/backgrounds/epic_background.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -92,12 +92,12 @@ class _PandavaStoryPageState extends State<PandavaStoryPage> {
                           (percentage * 100).toInt().toString() + "%",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         linearStrokeCap: LinearStrokeCap.roundAll,
                         progressColor: Colors.blue,
-                        backgroundColor: Color.fromRGBO(255, 255, 255, 0.4),
+                        backgroundColor: Color.fromRGBO(0, 0, 0, 0.4),
                       ),
                       InkWell(
                         child: Container(
@@ -145,23 +145,25 @@ class _PandavaStoryPageState extends State<PandavaStoryPage> {
                   ),
                   Expanded(
                     flex: 6,
-                    child: Scrollbar(
-                      child: SingleChildScrollView(
-                        child: Center(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color.fromRGBO(255, 255, 255, 0.4),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                storyName,
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.brown[800],
-                                  fontWeight: FontWeight.bold,
+                    child: Center(
+                      child: Scrollbar(
+                        child: SingleChildScrollView(
+                          child: Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Color.fromRGBO(0, 0, 0, 0.4),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  storyName,
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),

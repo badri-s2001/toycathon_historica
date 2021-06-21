@@ -11,7 +11,7 @@ class MythologyPage extends StatelessWidget {
         height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/background.png"),
+            image: AssetImage("images/backgrounds/epic_background.jpg"),
             fit: BoxFit.cover,
           ),
         ),

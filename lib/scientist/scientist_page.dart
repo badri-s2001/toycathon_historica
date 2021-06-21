@@ -12,7 +12,7 @@ class ScientistPage extends StatelessWidget {
         height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/background.png"),
+            image: AssetImage("images/backgrounds/scientist_background.jpg"),
             fit: BoxFit.cover,
           ),
         ),
