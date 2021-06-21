@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../story.dart';
 
@@ -100,65 +102,83 @@ class RamaStoryBrain {
 
   int _storyNumber = 0;
 
-  String getStory() {
+  Future<String> getStory() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('rama') ?? 0;
     return _storyData[_storyNumber].storyTitle;
   }
 
-  AssetImage getImage() {
+  Future<double> getPercentage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('rama') ?? 0;
+    double percentage = ((_storyNumber + 1) / (_storyData.length));
+    return percentage;
+  }
+
+  Future<AssetImage> getImage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('rama') ?? 0;
     return _storyData[_storyNumber].image;
   }
 
-  String getChoice1() {
+  Future<String> getChoice1() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('rama') ?? 0;
     return _storyData[_storyNumber].choice1;
   }
 
-  String getChoice2() {
+  Future<String> getChoice2() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('rama') ?? 0;
     return _storyData[_storyNumber].choice2;
   }
 
-  void reset() {
-    _storyNumber = 0;
+  Future<void> reset() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('rama', 0);
+    // _storyNumber = 0;
   }
 
-  void nextStory(int choiceNumber) {
+  void nextStory(int choiceNumber) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     if (choiceNumber == 1 && _storyNumber == 0)
-      _storyNumber = 2;
+      prefs.setInt('rama', 2);
     else if (choiceNumber == 2 && _storyNumber == 0) {
-      _storyNumber = 1;
+      prefs.setInt('rama', 1);
     } else if (choiceNumber == 1 && _storyNumber == 1) {
-      _storyNumber = 0;
+      prefs.setInt('rama', 0);
     } else if (choiceNumber == 1 && _storyNumber == 2) {
-      _storyNumber = 4;
+      prefs.setInt('rama', 4);
     } else if (choiceNumber == 2 && _storyNumber == 2) {
-      _storyNumber = 3;
+      prefs.setInt('rama', 3);
     } else if (choiceNumber == 1 && _storyNumber == 3) {
-      _storyNumber = 2;
+      prefs.setInt('rama', 2);
     } else if (choiceNumber == 1 && _storyNumber == 4) {
-      _storyNumber = 5;
+      prefs.setInt('rama', 5);
     } else if (choiceNumber == 2 && _storyNumber == 4) {
-      _storyNumber = 6;
+      prefs.setInt('rama', 6);
     } else if (choiceNumber == 1 && _storyNumber == 5) {
-      _storyNumber = 4;
+      prefs.setInt('rama', 4);
     } else if (choiceNumber == 2 && _storyNumber == 6) {
-      _storyNumber = 8;
+      prefs.setInt('rama', 8);
     } else if (choiceNumber == 1 && _storyNumber == 6) {
-      _storyNumber = 7;
+      prefs.setInt('rama', 7);
     } else if (choiceNumber == 1 && _storyNumber == 7) {
-      _storyNumber = 6;
+      prefs.setInt('rama', 6);
     } else if (choiceNumber == 1 && _storyNumber == 8) {
-      _storyNumber = 10;
+      prefs.setInt('rama', 10);
     } else if (choiceNumber == 2 && _storyNumber == 8) {
-      _storyNumber = 9;
+      prefs.setInt('rama', 9);
     } else if (choiceNumber == 1 && _storyNumber == 9) {
-      _storyNumber = 8;
+      prefs.setInt('rama', 8);
     } else if (choiceNumber == 1 && _storyNumber == 10) {
-      _storyNumber = 12;
+      prefs.setInt('rama', 12);
     } else if (choiceNumber == 2 && _storyNumber == 10) {
-      _storyNumber = 11;
+      prefs.setInt('rama', 11);
     } else if (choiceNumber == 1 && _storyNumber == 11) {
-      _storyNumber = 10;
+      prefs.setInt('rama', 10);
     } else if (choiceNumber == 1 && _storyNumber == 12) {
-      reset();
+      await reset();
     }
   }
 

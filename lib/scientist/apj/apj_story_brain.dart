@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../story.dart';
 
@@ -73,53 +75,71 @@ class APJStoryBrain {
 
   int _storyNumber = 0;
 
-  String getStory() {
+  Future<String> getStory() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('apj') ?? 0;
     return _storyData[_storyNumber].storyTitle;
   }
 
-  AssetImage getImage() {
+  Future<double> getPercentage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('apj') ?? 0;
+    double percentage = ((_storyNumber + 1) / (_storyData.length));
+    return percentage;
+  }
+
+  Future<AssetImage> getImage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('apj') ?? 0;
     return _storyData[_storyNumber].image;
   }
 
-  String getChoice1() {
+  Future<String> getChoice1() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('apj') ?? 0;
     return _storyData[_storyNumber].choice1;
   }
 
-  String getChoice2() {
+  Future<String> getChoice2() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _storyNumber = prefs.getInt('apj') ?? 0;
     return _storyData[_storyNumber].choice2;
   }
 
-  void reset() {
-    _storyNumber = 0;
+  Future<void> reset() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('apj', 0);
+    // _storyNumber = 0;
   }
 
-  void nextStory(int choiceNumber) {
+  void nextStory(int choiceNumber) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     if (choiceNumber == 1 && _storyNumber == 0)
-      _storyNumber = 1;
+      prefs.setInt('apj', 1);
     else if (choiceNumber == 2 && _storyNumber == 0) {
-      _storyNumber = 2;
+      prefs.setInt('apj', 2);
     } else if (choiceNumber == 1 && _storyNumber == 1) {
-      _storyNumber = 0;
+      prefs.setInt('apj', 0);
     } else if (choiceNumber == 1 && _storyNumber == 2) {
-      _storyNumber = 3;
+      prefs.setInt('apj', 3);
     } else if (choiceNumber == 2 && _storyNumber == 2) {
-      _storyNumber = 4;
+      prefs.setInt('apj', 4);
     } else if (choiceNumber == 1 && _storyNumber == 3) {
-      _storyNumber = 2;
+      prefs.setInt('apj', 2);
     } else if (choiceNumber == 1 && _storyNumber == 4) {
-      _storyNumber = 6;
+      prefs.setInt('apj', 6);
     } else if (choiceNumber == 2 && _storyNumber == 4) {
-      _storyNumber = 5;
+      prefs.setInt('apj', 5);
     } else if (choiceNumber == 1 && _storyNumber == 5) {
-      _storyNumber = 4;
+      prefs.setInt('apj', 4);
     } else if (choiceNumber == 2 && _storyNumber == 6) {
-      _storyNumber = 7;
+      prefs.setInt('apj', 7);
     } else if (choiceNumber == 1 && _storyNumber == 6) {
-      _storyNumber = 8;
+      prefs.setInt('apj', 8);
     } else if (choiceNumber == 1 && _storyNumber == 7) {
-      _storyNumber = 6;
+      prefs.setInt('apj', 6);
     } else if (choiceNumber == 1 && _storyNumber == 8) {
-      reset();
+      await reset();
     }
   }
 
