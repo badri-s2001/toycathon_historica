@@ -123,6 +123,7 @@ class PandavaStoryBrain {
 
   Future<String> getStory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getInt('pandava') == null) prefs.setInt(('pandava'), 0);
     _storyNumber = prefs.getInt('pandava') ?? 0;
     return _storyData[_storyNumber].storyTitle;
   }

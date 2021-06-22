@@ -105,6 +105,7 @@ class ChanakyaStoryBrain {
 
   Future<String> getStory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getInt('chanakya') == null) prefs.setInt(('chanakya'), 0);
     _storyNumber = prefs.getInt('chanakya') ?? 0;
     return _storyData[_storyNumber].storyTitle;
   }

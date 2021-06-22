@@ -77,6 +77,7 @@ class CVStoryBrain {
 
   Future<String> getStory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getInt('cv') == null) prefs.setInt(('cv'), 0);
     _storyNumber = prefs.getInt('cv') ?? 0;
     return _storyData[_storyNumber].storyTitle;
   }

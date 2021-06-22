@@ -104,6 +104,7 @@ class RamaStoryBrain {
 
   Future<String> getStory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getInt('rama') == null) prefs.setInt(('rama'), 0);
     _storyNumber = prefs.getInt('rama') ?? 0;
     return _storyData[_storyNumber].storyTitle;
   }

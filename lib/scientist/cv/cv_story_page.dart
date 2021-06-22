@@ -39,7 +39,7 @@ class _CVStoryPageState extends State<CVStoryPage> {
                   fit: BoxFit.cover,
                 ),
               ),
-              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
+              padding: EdgeInsets.fromLTRB(15, 50, 15, 25),
               constraints: BoxConstraints.expand(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -178,9 +178,14 @@ class _CVStoryPageState extends State<CVStoryPage> {
                   ),
                   Expanded(
                     flex: 6,
-                    child: Center(
-                      child: Image(
-                        image: storyImage,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: storyImage,
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                     ),
                   ),
@@ -217,7 +222,7 @@ class _CVStoryPageState extends State<CVStoryPage> {
                           child: Text(
                             choice1,
                             style: TextStyle(
-                              fontSize: 14.0,
+                              fontSize: 17.0,
                             ),
                           ),
                         ),
@@ -256,7 +261,7 @@ class _CVStoryPageState extends State<CVStoryPage> {
                             child: Text(
                               choice2,
                               style: TextStyle(
-                                fontSize: 14.0,
+                                fontSize: 17.0,
                               ),
                             ),
                           ),

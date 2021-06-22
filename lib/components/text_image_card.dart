@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class TextImageCard extends StatelessWidget {
   final String text;
+  final String percentage;
   final DecorationImage image;
   final Color color;
   final double height;
   final void Function() onTap;
 
-  const TextImageCard({
+  TextImageCard({
     required this.text,
+    required this.percentage,
     required this.image,
     required this.color,
     required this.height,
@@ -58,13 +60,27 @@ class TextImageCard extends StatelessWidget {
                 // ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    text,
-                    style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40.0,
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        text,
+                        style: TextStyle(
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40.0,
+                        ),
+                      ),
+                      Text(
+                        percentage,
+                        style: TextStyle(
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

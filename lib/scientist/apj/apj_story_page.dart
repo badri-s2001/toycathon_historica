@@ -39,7 +39,7 @@ class _APJStoryPageState extends State<APJStoryPage> {
                   fit: BoxFit.cover,
                 ),
               ),
-              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
+              padding: EdgeInsets.fromLTRB(15, 50, 15, 25),
               constraints: BoxConstraints.expand(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -178,9 +178,14 @@ class _APJStoryPageState extends State<APJStoryPage> {
                   ),
                   Expanded(
                     flex: 6,
-                    child: Center(
-                      child: Image(
-                        image: storyImage,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: storyImage,
+                          fit: BoxFit.fill,
+                          alignment: Alignment.topCenter,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                     ),
                   ),

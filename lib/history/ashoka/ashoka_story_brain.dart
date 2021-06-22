@@ -105,6 +105,7 @@ class AshokaStoryBrain {
 
   Future<String> getStory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getInt('ashoka') == null) prefs.setInt(('ashoka'), 0);
     _storyNumber = prefs.getInt('ashoka') ?? 0;
     return _storyData[_storyNumber].storyTitle;
   }
