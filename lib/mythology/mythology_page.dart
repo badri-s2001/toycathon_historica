@@ -11,28 +11,26 @@ class MythologyPage extends StatefulWidget {
 }
 
 class _MythologyPageState extends State<MythologyPage> {
+  String sRama = "";
+  String sPandavas = "";
+
+  Future<void> _getScore() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    sRama = "0% completed";
+    sPandavas = "0% completed";
+    if (prefs.getInt('rama') != null) {
+      int rama = prefs.getInt('rama');
+      sRama = (((rama + 1) / 13) * 100).toInt().toString() + "% completed";
+    }
+    if (prefs.getInt('pandava') != null) {
+      int pandava = prefs.getInt('pandava') ?? 0;
+      sPandavas =
+          (((pandava + 1) / 15) * 100).toInt().toString() + "% completed";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    String sRama = "";
-    String sPandavas = "";
-
-    Future<void> _getScore() async {
-      setState(() async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        sRama = "0% completed";
-        sPandavas = "0% completed";
-        if (prefs.getInt('rama') != null) {
-          int rama = prefs.getInt('rama');
-          sRama = (((rama + 1) / 13) * 100).toInt().toString() + "% completed";
-        }
-        if (prefs.getInt('pandava') != null) {
-          int pandava = prefs.getInt('pandava') ?? 0;
-          sPandavas =
-              (((pandava + 1) / 15) * 100).toInt().toString() + "% completed";
-        }
-      });
-    }
-
     return FutureBuilder(
         future: _getScore(),
         builder: (context, snapshot) {

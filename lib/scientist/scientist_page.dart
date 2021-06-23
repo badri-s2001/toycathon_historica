@@ -12,27 +12,25 @@ class ScientistPage extends StatefulWidget {
 }
 
 class _ScientistPageState extends State<ScientistPage> {
+  String sAPJ = "";
+  String sCV = "";
+
+  Future<void> _getScore() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    sAPJ = "0% completed";
+    sCV = "0% completed";
+    if (prefs.getInt('apj') != null) {
+      int apj = prefs.getInt('apj');
+      sAPJ = (((apj + 1) / 9) * 100).toInt().toString() + "% completed";
+    }
+    if (prefs.getInt('cv') != null) {
+      int cv = prefs.getInt('cv') ?? 0;
+      sCV = (((cv + 1) / 9) * 100).toInt().toString() + "% completed";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    String sAPJ = "";
-    String sCV = "";
-
-    Future<void> _getScore() async {
-      setState(() async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        sAPJ = "0% completed";
-        sCV = "0% completed";
-        if (prefs.getInt('apj') != null) {
-          int apj = prefs.getInt('apj');
-          sAPJ = (((apj + 1) / 9) * 100).toInt().toString() + "% completed";
-        }
-        if (prefs.getInt('cv') != null) {
-          int cv = prefs.getInt('cv') ?? 0;
-          sCV = (((cv + 1) / 9) * 100).toInt().toString() + "% completed";
-        }
-      });
-    }
-
     return FutureBuilder(
         future: _getScore(),
         builder: (context, snapshot) {

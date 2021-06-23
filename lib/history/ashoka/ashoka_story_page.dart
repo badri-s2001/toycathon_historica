@@ -181,8 +181,8 @@ class _AshokaStoryPageState extends State<AshokaStoryPage> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: storyImage,
-                          fit: BoxFit.fill,
-                          alignment: Alignment.topCenter,
+                          fit: BoxFit.cover,
+                          alignment: Alignment.center,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),

@@ -55,6 +55,10 @@ class _HomePageState extends State<HomePage> {
       await launch('$mailtoLink');
     }
 
+    launchCredits() async {
+      await launch('https://badri-s2001.github.io/toycathon_credits/');
+    }
+
     return FutureBuilder(
       future: _getScore(),
       builder: (context, snapshot) {
@@ -144,9 +148,17 @@ class _HomePageState extends State<HomePage> {
                         ).then((value) => setState(() {}));
                       },
                     ),
+                    SizedBox(
+                      height: 20.0,
+                      width: 150.0,
+                      child: Divider(
+                        color: Colors.black54,
+                        thickness: 3.0,
+                      ),
+                    ),
                     TextImageCard(
                       text: "Suggestion",
-                      percentage: "",
+                      percentage: "Mail us!",
                       image: DecorationImage(
                         image: AssetImage(
                           "images/card/home/suggestion.jpg",
@@ -158,6 +170,22 @@ class _HomePageState extends State<HomePage> {
                       height: MediaQuery.of(context).size.height / 4.8,
                       onTap: () {
                         launchMailto();
+                      },
+                    ),
+                    TextImageCard(
+                      text: "Credits",
+                      percentage: "Sources cited",
+                      image: DecorationImage(
+                        image: AssetImage(
+                          "images/card/home/credits.jpg",
+                        ),
+                        fit: BoxFit.cover,
+                        alignment: Alignment.center,
+                      ),
+                      color: Colors.teal,
+                      height: MediaQuery.of(context).size.height / 4.8,
+                      onTap: () {
+                        launchCredits();
                       },
                     ),
                   ],

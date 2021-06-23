@@ -12,29 +12,26 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
+  String sAshoka = "";
+  String sChanakya = "";
+
+  Future<void> _getScore() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    sAshoka = "0% completed";
+    sChanakya = "0% completed";
+    if (prefs.getInt('ashoka') != null) {
+      int ashoka = prefs.getInt('ashoka');
+      sAshoka = (((ashoka + 1) / 13) * 100).toInt().toString() + "% completed";
+    }
+    if (prefs.getInt('chanakya') != null) {
+      int chanakya = prefs.getInt('chanakya');
+      sChanakya =
+          (((chanakya + 1) / 13) * 100).toInt().toString() + "% completed";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    String sAshoka = "";
-    String sChanakya = "";
-
-    Future<void> _getScore() async {
-      setState(() async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        sAshoka = "0% completed";
-        sChanakya = "0% completed";
-        if (prefs.getInt('ashoka') != null) {
-          int ashoka = prefs.getInt('ashoka');
-          sAshoka =
-              (((ashoka + 1) / 13) * 100).toInt().toString() + "% completed";
-        }
-        if (prefs.getInt('chanakya') != null) {
-          int chanakya = prefs.getInt('chanakya');
-          sChanakya =
-              (((chanakya + 1) / 13) * 100).toInt().toString() + "% completed";
-        }
-      });
-    }
-
     return FutureBuilder(
       future: _getScore(),
       builder: (context, snapshot) {

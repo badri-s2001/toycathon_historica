@@ -40,7 +40,7 @@ class AshokaStoryBrain {
           'The rebellion overthrows King Bindusara\'s rule in Takshashila',
       choice1: 'Go back to previous choice',
       choice2: '',
-      image: AssetImage("images/ashoka/story4.jpeg"),
+      image: AssetImage("images/ashoka/story4.jpg"),
     ),
     Story(
       storyTitle:
@@ -69,14 +69,14 @@ class AshokaStoryBrain {
           'Ashoka has now set his eyes set on the adjacent land of Kalinga. What should Ashoka do?',
       choice1: 'Invade Kalinga',
       choice2: 'Try to form diplomatic relations with the ruler of Kalinga.',
-      image: AssetImage("images/ashoka/story8.png"),
+      image: AssetImage("images/ashoka/story8.jpg"),
     ),
     Story(
       storyTitle:
           'Ashoka invades Kalinga and wreaks havoc killing thousands. The destruction caused during the war made him repent violence. What should ashoka do now?',
       choice1: 'Explore buddha\'s teachings to find some inner peace',
       choice2: 'Continue his conquest and capture more kingdoms.',
-      image: AssetImage("images/ashoka/story9.jpeg"),
+      image: AssetImage("images/ashoka/story9.jpg"),
     ),
     Story(
       storyTitle:
@@ -87,15 +87,15 @@ class AshokaStoryBrain {
     ),
     Story(
       storyTitle:
-          'Ashoka converts to Buddhism and finds inner peace in Buddha\'s teachings. He then helped in spreading Buddhism both throughout India and abroad',
-      choice1: 'Restart',
+          'Ashoka wins several conquests but is left feeling more desolate with each victory',
+      choice1: 'Go back to previous choice',
       choice2: '',
       image: AssetImage("images/ashoka/story11.jpg"),
     ),
     Story(
       storyTitle:
-          'Ashoka wins several conquests but is left feeling more desolate with each victory',
-      choice1: 'Go back to previous choice',
+          'Ashoka converts to Buddhism and finds inner peace in Buddha\'s teachings. He then helped in spreading Buddhism both throughout India and abroad',
+      choice1: 'Restart',
       choice2: '',
       image: AssetImage("images/ashoka/story12.jpg"),
     ),
@@ -150,7 +150,7 @@ class AshokaStoryBrain {
     } else if (choiceNumber == 1 && _storyNumber == 1) {
       prefs.setInt('ashoka', 3);
     } else if (choiceNumber == 2 && _storyNumber == 1) {
-      prefs.setInt('ashoka', 4);
+      prefs.setInt('ashoka', 2);
     } else if (choiceNumber == 1 && _storyNumber == 2) {
       prefs.setInt('ashoka', 0);
     } else if (choiceNumber == 1 && _storyNumber == 3) {
@@ -174,15 +174,15 @@ class AshokaStoryBrain {
     } else if (choiceNumber == 2 && _storyNumber == 8) {
       prefs.setInt('ashoka', 10);
     } else if (choiceNumber == 1 && _storyNumber == 9) {
-      prefs.setInt('ashoka', 11);
-    } else if (choiceNumber == 2 && _storyNumber == 9) {
       prefs.setInt('ashoka', 12);
+    } else if (choiceNumber == 2 && _storyNumber == 9) {
+      prefs.setInt('ashoka', 11);
     } else if (choiceNumber == 1 && _storyNumber == 10) {
       prefs.setInt('ashoka', 8);
     } else if (choiceNumber == 1 && _storyNumber == 11) {
-      await reset();
-    } else if (choiceNumber == 1 && _storyNumber == 12) {
       prefs.setInt('ashoka', 9);
+    } else if (choiceNumber == 1 && _storyNumber == 12) {
+      await reset();
     }
   }
 

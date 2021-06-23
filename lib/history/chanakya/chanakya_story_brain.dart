@@ -75,7 +75,7 @@ class ChanakyaStoryBrain {
           'Pabbata proves to be weak and fails to overthrow his father.',
       choice1: 'Go back to previous choice',
       choice2: '',
-      image: AssetImage("images/chanakya/story9.png"),
+      image: AssetImage("images/chanakya/story9.jpg"),
     ),
     Story(
       storyTitle:
@@ -97,7 +97,7 @@ class ChanakyaStoryBrain {
           'Chanakya writes Chanakya Neeti and Arthashastra whilst helping Chandragupta Maurya run the kingdom efficiently',
       choice1: 'Restart',
       choice2: '',
-      image: AssetImage("images/chanakya/story12.jpeg"),
+      image: AssetImage("images/chanakya/story12.jpg"),
     ),
   ];
 
