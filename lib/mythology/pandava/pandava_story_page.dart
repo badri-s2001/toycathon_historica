@@ -3,6 +3,8 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:historica/mythology/pandava/pandava_story_brain.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_tts/flutter_tts.dart';
 
 class PandavaStoryPage extends StatefulWidget {
   @override
@@ -11,6 +13,25 @@ class PandavaStoryPage extends StatefulWidget {
 
 class _PandavaStoryPageState extends State<PandavaStoryPage> {
   PandavaStoryBrain storyBrain = PandavaStoryBrain();
+
+  FlutterTts flutterTts = FlutterTts();
+  String language = "en-IN";
+  double volume = 1.0;
+  double pitch = 1.0;
+  double rate = 0.7;
+
+  _speak(String text) async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setSpeechRate(rate);
+    await flutterTts.setPitch(pitch);
+    await flutterTts.setLanguage(language);
+
+    await flutterTts.speak(text);
+  }
+
+  Future _stop() async {
+    await flutterTts.stop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,6 +196,38 @@ class _PandavaStoryPageState extends State<PandavaStoryPage> {
                   SizedBox(
                     height: 10.0,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          _speak(storyName);
+                        },
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.green),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: _stop,
+                        child: Icon(
+                          Icons.stop,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Expanded(
                     flex: 6,
                     child: Container(
@@ -211,6 +264,7 @@ class _PandavaStoryPageState extends State<PandavaStoryPage> {
                         onPressed: () {
                           setState(() {
                             // Choice 1 made by user.
+                            _stop();
                             final player = AudioCache();
                             player.play('sound1.mp3');
                             storyBrain.nextStory(1);
@@ -250,6 +304,7 @@ class _PandavaStoryPageState extends State<PandavaStoryPage> {
                         child: FlatButton(
                           onPressed: () {
                             setState(() {
+                              _stop();
                               final player = AudioCache();
                               player.play('sound2.mp3');
                               storyBrain.nextStory(2);
@@ -274,5 +329,11 @@ class _PandavaStoryPageState extends State<PandavaStoryPage> {
             ),
           );
         });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    flutterTts.stop();
   }
 }

@@ -20,6 +20,7 @@ dependencies:
   percent_indicator: ^3.0.1
   mailto: ^2.0.0
   url_launcher: ^5.7.10
+  flutter_tts: ^3.1.0
 
 
 

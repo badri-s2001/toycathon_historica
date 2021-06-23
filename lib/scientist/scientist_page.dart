@@ -45,61 +45,63 @@ class _ScientistPageState extends State<ScientistPage> {
                 ),
               ),
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Center(
-                      child: Image(
-                        image: AssetImage("images/logo/science.png"),
-                        width: 200,
-                        height: 200,
-                      ),
-                    ),
-                    TextImageCard(
-                      text: "Kalam",
-                      percentage: sAPJ,
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "images/card/scientist/kalam.jpeg",
+                child: SafeArea(
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Image(
+                          image: AssetImage("images/logo/science.png"),
+                          width: MediaQuery.of(context).size.width - 50,
+                          height: 150,
                         ),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topCenter,
                       ),
-                      color: Colors.green,
-                      height: MediaQuery.of(context).size.height / 3.5,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => APJStoryPage(),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      TextImageCard(
+                        text: "Kalam",
+                        percentage: sAPJ,
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "images/card/scientist/kalam.jpeg",
                           ),
-                        ).then((value) => setState(() {}));
-                      },
-                    ),
-                    TextImageCard(
-                      text: "C V Raman",
-                      percentage: sCV,
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "images/card/scientist/cvraman.jpeg",
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter,
                         ),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topCenter,
+                        color: Colors.green,
+                        height: MediaQuery.of(context).size.height / 3.5,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => APJStoryPage(),
+                            ),
+                          ).then((value) => setState(() {}));
+                        },
                       ),
-                      color: Colors.pinkAccent,
-                      height: MediaQuery.of(context).size.height / 3.5,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CVStoryPage(),
+                      TextImageCard(
+                        text: "C V Raman",
+                        percentage: sCV,
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "images/card/scientist/cvraman.jpeg",
                           ),
-                        ).then((value) => setState(() {}));
-                      },
-                    ),
-                  ],
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter,
+                        ),
+                        color: Colors.pinkAccent,
+                        height: MediaQuery.of(context).size.height / 3.5,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CVStoryPage(),
+                            ),
+                          ).then((value) => setState(() {}));
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

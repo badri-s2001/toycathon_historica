@@ -50,12 +50,12 @@ class _MythologyPageState extends State<MythologyPage> {
                       Center(
                         child: Image(
                           image: AssetImage("images/logo/myth.png"),
-                          width: 200,
-                          height: 200,
+                          width: MediaQuery.of(context).size.width - 50,
+                          height: 150,
                         ),
                       ),
                       SizedBox(
-                        height: 20.0,
+                        height: 8,
                       ),
                       TextImageCard(
                         text: "Rama",

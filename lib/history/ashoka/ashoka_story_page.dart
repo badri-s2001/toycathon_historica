@@ -1,6 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'ashoka_story_brain.dart';
 
@@ -10,6 +11,25 @@ class AshokaStoryPage extends StatefulWidget {
 
 class _AshokaStoryPageState extends State<AshokaStoryPage> {
   AshokaStoryBrain storyBrain = AshokaStoryBrain();
+
+  FlutterTts flutterTts = FlutterTts();
+  String language = "en-IN";
+  double volume = 1.0;
+  double pitch = 1.0;
+  double rate = 0.7;
+
+  _speak(String text) async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setSpeechRate(rate);
+    await flutterTts.setPitch(pitch);
+    await flutterTts.setLanguage(language);
+
+    await flutterTts.speak(text);
+  }
+
+  Future _stop() async {
+    await flutterTts.stop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,6 +195,38 @@ class _AshokaStoryPageState extends State<AshokaStoryPage> {
                   SizedBox(
                     height: 10.0,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          _speak(storyName);
+                        },
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.green),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: _stop,
+                        child: Icon(
+                          Icons.stop,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Expanded(
                     flex: 6,
                     child: Container(
@@ -182,7 +234,7 @@ class _AshokaStoryPageState extends State<AshokaStoryPage> {
                         image: DecorationImage(
                           image: storyImage,
                           fit: BoxFit.cover,
-                          alignment: Alignment.center,
+                          alignment: Alignment.topCenter,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
@@ -211,6 +263,7 @@ class _AshokaStoryPageState extends State<AshokaStoryPage> {
                         onPressed: () {
                           setState(() {
                             // Choice 1 made by user.
+                            _stop();
                             final player = AudioCache();
                             player.play('sound1.mp3');
                             storyBrain.nextStory(1);
@@ -250,6 +303,7 @@ class _AshokaStoryPageState extends State<AshokaStoryPage> {
                         child: FlatButton(
                           onPressed: () {
                             setState(() {
+                              _stop();
                               final player = AudioCache();
                               player.play('sound2.mp3');
                               storyBrain.nextStory(2);
@@ -274,5 +328,11 @@ class _AshokaStoryPageState extends State<AshokaStoryPage> {
             ),
           );
         });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    flutterTts.stop();
   }
 }

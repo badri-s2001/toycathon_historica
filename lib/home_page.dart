@@ -56,7 +56,10 @@ class _HomePageState extends State<HomePage> {
     }
 
     launchCredits() async {
-      await launch('https://badri-s2001.github.io/toycathon_credits/');
+      await launch(
+        'https://badri-s2001.github.io/toycathon_credits/',
+        forceWebView: true,
+      );
     }
 
     return FutureBuilder(

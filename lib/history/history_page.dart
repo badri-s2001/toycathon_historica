@@ -45,58 +45,63 @@ class _HistoryPageState extends State<HistoryPage> {
               ),
             ),
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Center(
-                    child: Image(
-                      image: AssetImage("images/logo/history.png"),
-                      width: 250,
-                      height: 250,
-                    ),
-                  ),
-                  TextImageCard(
-                    text: "Ashoka",
-                    percentage: sAshoka,
-                    image: DecorationImage(
-                      image: AssetImage(
-                        "images/card/history/ashoka.jpeg",
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    Center(
+                      child: Image(
+                        image: AssetImage("images/logo/history.png"),
+                        width: MediaQuery.of(context).size.width - 50,
+                        height: 150,
                       ),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
                     ),
-                    color: Colors.deepPurpleAccent,
-                    height: MediaQuery.of(context).size.height / 3.5,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AshokaStoryPage(),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    TextImageCard(
+                      text: "Ashoka",
+                      percentage: sAshoka,
+                      image: DecorationImage(
+                        image: AssetImage(
+                          "images/card/history/ashoka.jpeg",
                         ),
-                      ).then((value) => setState(() {}));
-                    },
-                  ),
-                  TextImageCard(
-                    text: "Chanakya",
-                    percentage: sChanakya,
-                    image: DecorationImage(
-                      image: AssetImage(
-                        "images/card/history/chanakya.jpeg",
+                        fit: BoxFit.cover,
+                        alignment: Alignment.topCenter,
                       ),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
+                      color: Colors.deepPurpleAccent,
+                      height: MediaQuery.of(context).size.height / 3.5,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AshokaStoryPage(),
+                          ),
+                        ).then((value) => setState(() {}));
+                      },
                     ),
-                    color: Colors.tealAccent,
-                    height: MediaQuery.of(context).size.height / 3.5,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChanakyaStoryPage(),
+                    TextImageCard(
+                      text: "Chanakya",
+                      percentage: sChanakya,
+                      image: DecorationImage(
+                        image: AssetImage(
+                          "images/card/history/chanakya.jpeg",
                         ),
-                      ).then((value) => setState(() {}));
-                    },
-                  ),
-                ],
+                        fit: BoxFit.cover,
+                        alignment: Alignment.topCenter,
+                      ),
+                      color: Colors.tealAccent,
+                      height: MediaQuery.of(context).size.height / 3.5,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChanakyaStoryPage(),
+                          ),
+                        ).then((value) => setState(() {}));
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

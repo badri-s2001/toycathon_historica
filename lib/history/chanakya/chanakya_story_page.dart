@@ -2,6 +2,7 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'chanakya_story_brain.dart';
 
@@ -12,6 +13,25 @@ class ChanakyaStoryPage extends StatefulWidget {
 
 class _ChanakyaStoryPageState extends State<ChanakyaStoryPage> {
   ChanakyaStoryBrain storyBrain = ChanakyaStoryBrain();
+
+  FlutterTts flutterTts = FlutterTts();
+  String language = "en-IN";
+  double volume = 1.0;
+  double pitch = 1.0;
+  double rate = 0.7;
+
+  _speak(String text) async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setSpeechRate(rate);
+    await flutterTts.setPitch(pitch);
+    await flutterTts.setLanguage(language);
+
+    await flutterTts.speak(text);
+  }
+
+  Future _stop() async {
+    await flutterTts.stop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,18 +197,48 @@ class _ChanakyaStoryPageState extends State<ChanakyaStoryPage> {
                   SizedBox(
                     height: 10.0,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          _speak(storyName);
+                        },
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.green),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: _stop,
+                        child: Icon(
+                          Icons.stop,
+                          color: Colors.white,
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Expanded(
                     flex: 6,
-                    child: Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: storyImage,
-                            fit: BoxFit.cover,
-                            alignment: Alignment.topCenter,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: storyImage,
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter,
                         ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                     ),
                   ),
@@ -215,6 +265,7 @@ class _ChanakyaStoryPageState extends State<ChanakyaStoryPage> {
                         onPressed: () {
                           setState(() {
                             // Choice 1 made by user.
+                            _stop();
                             final player = AudioCache();
                             player.play('sound1.mp3');
                             storyBrain.nextStory(1);
@@ -254,6 +305,7 @@ class _ChanakyaStoryPageState extends State<ChanakyaStoryPage> {
                         child: FlatButton(
                           onPressed: () {
                             setState(() {
+                              _stop();
                               final player = AudioCache();
                               player.play('sound2.mp3');
                               storyBrain.nextStory(2);
@@ -278,5 +330,11 @@ class _ChanakyaStoryPageState extends State<ChanakyaStoryPage> {
             ),
           );
         });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    flutterTts.stop();
   }
 }
